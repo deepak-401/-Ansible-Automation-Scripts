@@ -1,0 +1,7 @@
+- hosts: localhost
+  connection: local
+  vars_files:
+    - password.yml
+  become: yes
+  roles:
+    - ec2
