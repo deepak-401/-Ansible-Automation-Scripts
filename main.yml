@@ -1,0 +1,17 @@
+---
+- name: Start an EC2 instance with a public IP address
+  amazon.aws.ec2_instance:
+    name: "ansible-instance"
+    instance_type: t2.micro
+    security_groups:
+      - sg-0c848f82af7ad7a42   # Replace with your actual security group ID
+    region: ap-south-1
+    vpc_subnet_id: subnet-0fef5c8e9a24568a2
+    aws_access_key: "{{aws_access_key}}"  # From vault as defined
+    aws_secret_key: "{{aws_secret_key}}"  # From vault as defined
+    network_interfaces:
+      - assign_public_ip: true
+    image_id: ami-0fd05997b4dff7aac
+    tags:
+      Environment: Testing
+
